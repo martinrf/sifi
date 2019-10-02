@@ -1,0 +1,17 @@
+// TODO: Change this to use Axios and remove request dependency.
+const request = require('request');
+
+class FacebookAPI {
+
+  async send(payload) {
+    const requestData = {
+      'url': process.env.FACEBOOK_GRAPH_API + '/me/messages',
+      'qs': { 'access_token': process.env.MESSENGER_API_TOKEN },
+      'method': 'post',
+      'json': payload
+    };
+    await request(requestData);
+  }
+}
+
+module.exports = new FacebookAPI();

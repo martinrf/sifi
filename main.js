@@ -1,0 +1,19 @@
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+require('dotenv').config();
+
+const app = express();
+const port = process.env.PORT;
+
+app.options('*', cors());
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+require('./src/routes/index')(app);
+
+app.listen(port, () => {
+  console.log('Zurbo is running on port ' + port);
+});
+
+module.exports = app;

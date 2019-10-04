@@ -1,4 +1,4 @@
-const api = require('../api/facebook-graph');
+const api = require('./facebook-graph');
 
 class Messenger {
 

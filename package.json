@@ -34,8 +34,7 @@
     "logbro": "^1.2.0",
     "mongoose": "^5.7.3",
     "nodemon": "^1.19.3",
-    "querystring": "^0.2.0",
-    "request": "^2.88.0"
+    "querystring": "^0.2.0"
   },
   "devDependencies": {
     "mocha": "^6.2.1",

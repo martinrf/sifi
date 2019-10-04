@@ -1,5 +1,6 @@
 // TODO: Change this to use Axios and remove request dependency.
 const request = require('request');
+const axios = require('axios');
 
 class FacebookAPI {
 
@@ -10,7 +11,24 @@ class FacebookAPI {
       'method': 'post',
       'json': payload
     };
-    await request(requestData);
+    return await request(requestData);
+  }
+
+  /***
+   * Gets user profile data from Facebook.
+   * @param userId
+   * @returns {Promise<*>}
+   */
+  async getUserProfileData (userId) {
+    const url = process.env.FACEBOOK_GRAPH_API + '/' + userId;
+    const response = await axios.get(url, {
+      'method': 'get',
+      'params': {
+        'fields': 'first_name,last_name,profile_pic,locale,timezone,gender',
+        'access_token': process.env.MESSENGER_API_TOKEN
+      }
+    });
+    return response.data;
   }
 }
 

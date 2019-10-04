@@ -2,6 +2,10 @@ const api = require('../api/facebook-graph');
 
 class Messenger {
 
+  async getUserProfileData(userId) {
+    return await api.getUserProfileData(userId);
+  }
+
   async sendMessage(recipientId, message){
     const payload = await this.createPayload(recipientId, message);
     return await api.send(payload);

@@ -7,7 +7,7 @@
     "start": "nodemon main.js",
     "server": "node index.js",
     "lint": "eslint src/**",
-    "test": "test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -36,5 +36,9 @@
     "nodemon": "^1.19.3",
     "querystring": "^0.2.0",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.1",
+    "proxyquire": "^2.1.3"
   }
 }

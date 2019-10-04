@@ -1,8 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const mongoOptions = require("./mongoConfig");
 require('dotenv').config();
 
+const MONGODB_URI = process.env.MONGODB_URI;
+
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true
+});
 const app = express();
 const port = process.env.PORT;
 

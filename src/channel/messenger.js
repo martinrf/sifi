@@ -6,14 +6,19 @@ class Messenger {
     return await api.getUserProfileData(userId);
   }
 
-  async sendMessage(recipientId, message){
-    const payload = await this.createPayload(recipientId, message);
-    return await api.send(payload);
+  async sendMessage(recipientId, message) {
+    try {
+      const payload = await this.createPayload(recipientId, message);
+      return await api.send(payload);
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  async createPayload(recipientId, message){
+  async createPayload(recipientId, message) {
     return {
-      'recipient': { 'id' : recipientId },
+      'recipient': { 'id': recipientId },
       'message': message,
       'notification_type': 'REGULAR'
     };

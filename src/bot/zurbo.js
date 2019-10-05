@@ -21,9 +21,10 @@ class Zurbo {
     }
 
     const intent = await dialogflow.detectIntent({ event, user });
-    console.log(intent);
 
-    await messenger.sendMessage(event.sender.id, { 'text': 'echo ' + event.message.text });
+    //TODO: Update! This is just for testing propose.
+    const result = intent ? 'Holis!' : `echo ${event.message.text}`;
+    await messenger.sendMessage(event.sender.id, { 'text': result });
   }
 }
 

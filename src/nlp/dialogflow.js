@@ -6,7 +6,7 @@ class Dialogflow {
 
   async detectIntent({ event, user }) {
     const sessionId = uuid.v4();
-    const filePath = `${process.cwd()}/src/gloud/service-account-key.json`;
+    const filePath = `${__dirname}/service-account-key.json`;
     const sessionClient = new dialogflow.SessionsClient({ keyFilename: filePath });
     const sessionPath = sessionClient.sessionPath(DIALOGFLOW_PROJECT_ID, sessionId);
 
@@ -21,18 +21,8 @@ class Dialogflow {
     };
 
     const responses = await sessionClient.detectIntent(request);
-    console.log('Detected intent');
-
     const result = responses[0].queryResult;
-    console.log(`Query: ${result.queryText}`);
-    console.log(`Response: ${result.fulfillmentText}`);
-
-    if (result.intent) {
-      console.log(`Intent: ${result.intent.displayName}`);
-
-    } else {
-      console.log('No intent matched.');
-    }
+    return result.intent ? result.intent.displayName : null;
   }
 }
 

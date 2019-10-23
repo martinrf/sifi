@@ -1,0 +1,15 @@
+{
+  "greet": {
+    "type": "text",
+    "text": "Hello 🖖"
+  },
+  "askAge": {
+    "type": "prompt-text",
+    "text": "How old are you?",
+    "field": "age"
+  },
+  "unknown": {
+    "type": "text",
+    "text": "Sorry, I don't understand 😢"
+  }
+}

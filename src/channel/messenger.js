@@ -1,4 +1,5 @@
 const api = require('./facebook-graph');
+const messageFactory = require('./messageFactory');
 
 class Messenger {
 
@@ -6,22 +7,22 @@ class Messenger {
     return await api.getUserProfileData(userId);
   }
 
-  async sendMessage(recipientId, message) {
-    try {
-      const payload = await this.createPayload(recipientId, message);
-      return await api.send(payload);
-
-    } catch (error) {
-      console.log(error);
-    }
+  async processMessage(message) {
+    const newMessage = await messageFactory.build({
+      type: message.type,
+      userId: message.user.facebook_id,
+      text: message.text
+    });
+    return this.send(newMessage);
   }
 
-  async createPayload(recipientId, message) {
-    return {
-      'recipient': { 'id': recipientId },
-      'message': message,
-      'notification_type': 'REGULAR'
-    };
+  async send(message) {
+    try {
+      return await api.send(message);
+
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 

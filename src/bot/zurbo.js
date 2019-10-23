@@ -2,6 +2,7 @@ const messenger = require('../channel/messenger');
 const dialogflow = require('../nlp/dialogflow');
 // TODO: move this outside of this class
 const userService = require('../persistence/services/user-service');
+const dialog = require('../dialogs');
 
 class Zurbo {
 
@@ -21,10 +22,7 @@ class Zurbo {
     }
 
     const intent = await dialogflow.detectIntent({ event, user });
-
-    //TODO: Update! This is just for testing propose.
-    const result = intent ? 'Holis!' : `echo ${event.message.text}`;
-    await messenger.sendMessage(event.sender.id, { 'text': result });
+    await dialog.beginDialog(user, intent);
   }
 }
 

@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "mocha": "^6.2.1",
+    "nock": "^11.4.0",
     "proxyquire": "^2.1.3"
   }
 }

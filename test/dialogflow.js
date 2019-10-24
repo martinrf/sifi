@@ -8,7 +8,7 @@ describe('Detect intent', () => {
       const event = { message: { text: 'hello' } };
       const user = { locale: 'en_US' };
       const response = await dialogflow.detectIntent({ event, user });
-      assert.equal(response, 'greet');
+      assert(response, 'greet');
     });
   });
 });

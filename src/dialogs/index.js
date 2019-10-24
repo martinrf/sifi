@@ -1,33 +1,45 @@
 const dialogs = require('./dialogs.json');
 const messenger = require('../channel/messenger');
+const userService = require('../persistence/services/user-service');
 
 class Dialog {
 
   findDialog(dialogId) {
-    const dialog = dialogs[dialogId];
-    return dialog || dialogs['unknown'];
+    return dialogs[dialogId] || dialogs['unknown'];
   }
 
-  async processTextDialog(user, text) {
-    const newMessage = { type: 'text', user, text };
-    await messenger.processMessage(newMessage);
+  async processTextDialog(user, dialog) {
+    await messenger.send({ ...dialog, user });
+  }
+
+  async processPromptDialog(user, dialog) {
+    const condition = { facebook_id: user.facebook_id };
+    const update = { dialogStatus: 'waitingResponse', promptField: dialog.field };
+    await userService.updateOne(condition, update);
+    await messenger.send({ ...dialog, user });
   }
 
   async beginDialog(user, dialogId) {
     const dialog = this.findDialog(dialogId);
-
     switch (dialog.type) {
       case 'text':
-        await this.processTextDialog(user, dialog.text);
+        await this.processTextDialog(user, dialog);
         break;
 
-      case 'prompt-text':
-
+      case 'prompt':
+        await this.processPromptDialog(user, dialog);
         break;
 
       default:
         break;
     }
+  }
+
+  async saveDialogResponse(user, response) {
+    const condition = { facebook_id: user.facebook_id };
+    const update = { promptField: null, dialogStatus: 'finished' };
+    update[user.promptField] = response;
+    await userService.updateOne(condition, update);
   }
 }
 

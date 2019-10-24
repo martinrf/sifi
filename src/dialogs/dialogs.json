@@ -1,12 +1,10 @@
 {
   "greet": {
-    "type": "text",
-    "text": "Hello 🖖"
-  },
-  "askAge": {
-    "type": "prompt-text",
-    "text": "How old are you?",
-    "field": "age"
+    "type": "prompt",
+    "field": "email",
+    "validation": null,
+    "choices": [],
+    "text": "what is your email address?"
   },
   "unknown": {
     "type": "text",

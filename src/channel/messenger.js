@@ -1,5 +1,5 @@
 const api = require('./facebook-graph');
-const messageFactory = require('./messageFactory');
+const message = require('./message');
 
 class Messenger {
 
@@ -7,18 +7,10 @@ class Messenger {
     return await api.getUserProfileData(userId);
   }
 
-  async processMessage(message) {
-    const newMessage = await messageFactory.build({
-      type: message.type,
-      userId: message.user.facebook_id,
-      text: message.text
-    });
-    return this.send(newMessage);
-  }
-
-  async send(message) {
+  async send(msg) {
     try {
-      return await api.send(message);
+      const newMessage = await message.build(msg);
+      return await api.send(newMessage);
 
     } catch (error) {
       console.error(error);

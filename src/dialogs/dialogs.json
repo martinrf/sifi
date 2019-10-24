@@ -1,5 +1,9 @@
 {
   "greet": {
+    "type": "text",
+    "text": "Hello 🖖"
+  },
+  "askEmail": {
     "type": "prompt",
     "field": "email",
     "validation": null,

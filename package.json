@@ -7,7 +7,7 @@
     "start": "nodemon main.js",
     "server": "node index.js",
     "lint": "eslint src/**/*.js",
-    "test": "mocha"
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",

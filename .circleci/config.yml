@@ -24,7 +24,7 @@ jobs: # a collection of steps
         command: npm run lint
     - run: # run tests
         name: test
-        command: npm run nyc mocha
+        command: npm test
     - run: # run coverage report
         name: code-coverage
         command: './node_modules/.bin/nyc report --reporter=text-lcov'

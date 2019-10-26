@@ -3,12 +3,12 @@
     "type": "text",
     "text": "Hello 🖖"
   },
-  "askEmail": {
+  "contact": {
     "type": "prompt",
     "field": "email",
-    "validation": null,
+    "text": "Sure! A seller will contact you to provide you with all the information. Please tell me what is your email?",
     "choices": [],
-    "text": "what is your email address?"
+    "validation": null
   },
   "unknown": {
     "type": "text",

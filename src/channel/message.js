@@ -2,7 +2,7 @@ class Message {
 
   buildTextMessage(msg) {
     return {
-      recipient: { id: msg.userId },
+      recipient: { id: msg.user.facebook_id },
       message: { text: msg.text },
       notification_type: 'REGULAR'
     };

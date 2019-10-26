@@ -62,3 +62,7 @@ typings/
 
 # idea
 .idea/
+
+#nyc
+.nyc
+coverage/

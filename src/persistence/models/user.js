@@ -11,6 +11,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String },
   dialogStatus: { type: String },
   promptField: { type: String },
+  validationText: { type: String },
+  closeText: { type: String },
 }, { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } });
 
 const userModel = mongoose.model('user', userSchema);

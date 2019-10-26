@@ -14,9 +14,20 @@ class Dialog {
 
   async processPromptDialog(user, dialog) {
     const condition = { facebook_id: user.facebook_id };
-    const update = { dialogStatus: 'waitingResponse', promptField: dialog.field };
+    const message = {
+      type: dialog.type,
+      text: dialog.promptText,
+      choices: dialog.choices,
+      user
+    };
+    const update = {
+      dialogStatus: 'waitingResponse',
+      promptField: dialog.field,
+      validationText: dialog.validationText,
+      closeText: dialog.closeText
+    };
     await userService.updateOne(condition, update);
-    await messenger.send({ ...dialog, user });
+    await messenger.send(message);
   }
 
   async beginDialog(user, dialogId) {

@@ -5,11 +5,20 @@ const user = require('../user');
 
 class Zurbo {
 
+  async processReponse(usr, response) {
+    await dialog.saveDialogResponse(usr, response);
+    if (usr.closeText) {
+      //TODO: Move to another place.
+      const newDialog = { type: 'text', text: usr.closeText };
+      await dialog.processTextDialog(usr, newDialog);
+    }
+  }
+
   async processRequest(event) {
     const usr = await user.get(event.sender.id);
     switch (usr.dialogStatus) {
       case 'waitingResponse': {
-        await dialog.saveDialogResponse(usr, event.message.text);
+        await this.processReponse(usr, event.message.text);
         break;
       }
 

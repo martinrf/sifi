@@ -6,8 +6,10 @@
   "scripts": {
     "start": "nodemon main.js",
     "server": "node index.js",
-    "lint": "eslint src/**",
-    "test": "mocha"
+    "lint": "eslint src/**/*.js",
+    "lint-fix": "eslint --fix src/**/*.js",
+    "test": "mocha",
+    "test_coverage": "nyc --reporter=html --reporter=text mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -35,7 +37,9 @@
     "logbro": "^1.2.0",
     "mongoose": "^5.7.3",
     "nodemon": "^1.19.3",
+    "nyc": "^14.1.1",
     "querystring": "^0.2.0",
+    "src": "^1.1.2",
     "uuid": "^3.3.3"
   },
   "devDependencies": {

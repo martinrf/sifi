@@ -18,7 +18,7 @@ module.exports = (app) => {
         && (event.message.text || event.message.sticker_id)
         && !event.message.quick_reply
         && !event.message.is_echo) {
-        await zurbo.processFreeText(event);
+        await zurbo.processRequest(event);
       }
     }
   });

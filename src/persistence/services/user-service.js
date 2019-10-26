@@ -3,10 +3,21 @@ const UserModel = require('../models/user');
 class UserService {
 
   async create(userProfile) {
-    try{
+    try {
       let user = new UserModel(userProfile);
       return await user.save();
-    } catch (error){
+    } catch (error) {
+      // TODO: Implement logger
+      console.error(error);
+      throw error;
+    }
+  }
+
+  async updateOne(conditions, update, options = { multi: false }) {
+    try {
+      const response = await UserModel.updateOne(conditions, update, options);
+      return response;
+    } catch (error) {
       // TODO: Implement logger
       console.error(error);
       throw error;
@@ -14,10 +25,10 @@ class UserService {
   }
 
   async findByFacebookId(facebook_id) {
-    try{
+    try {
       const user = await UserModel.findOne({ 'facebook_id': facebook_id });
       return user;
-    } catch (error){
+    } catch (error) {
       // TODO: Implement logger
       console.error(error);
       throw error;

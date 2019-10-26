@@ -1,69 +1,36 @@
-version: 2.1 # use CircleCI 2.1
-jobs: # a collection of steps
-  build: # runs not using Workflows must have a `build` job as entry point
-    environment:
-      CC_TEST_REPORTER_ID: code_climate_id_here
-      NODE_ENV: development
-
-    working_directory: ~/repo # directory where steps will run
-    docker: # run the steps with Docker
-    - image: circleci/node:10.16.3 # ...with this image as the primary container; this is where all `steps` will run
-    steps: # a collection of executable commands
-    - checkout # special step to check out source code to working directory
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+    - image: circleci/node:10.16.3
+    steps:
+    - checkout
     - run:
         name: update-npm
         command: 'sudo npm install -g npm@latest'
-    - restore_cache: # special step to restore the dependency cache
-        # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+    - restore_cache:
         key: dependency-cache-{{ checksum "package-lock.json" }}
     - run:
         name: install-dependencies
         command: npm install
-    - run: npm install mocha-junit-reporter # just for CircleCI
-
     - save_cache: # special step to save the dependency cache
         key: dependency-cache-{{ checksum "package-lock.json" }}
         paths:
         - ./node_modules
-    - run: # run lint
+    - run:
         name: linter
         command: npm run lint
-    - run: # run tests
+    - run:
         name: test
         command: npm test
-    - run: # run coverage report
-        name: code-coverage
-        command: './node_modules/.bin/nyc report --reporter=text-lcov'
-    - run:
-        name: Setup Code Climate test-reporter
-        command: |
-          # download test reporter as a static binary
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-        when: always
-
     - run:
         name: code-coverage
-        command: |
-          mkdir coverage
-          # nyc report requires that nyc has already been run,
-          # which creates the .nyc_output folder containing necessary data
-          ./node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info
-          ./cc-test-reporter after-build -t lcov
+        command: npm run coverage
         when: always
-
-        # Upload results
-
-    - store_test_results:
-        path: reports
-
+    - run:
+        name: Compress Coverage Reports
+        command: tar -cvf coverage.tar /coverage/lcov-report
     - store_artifacts:
-        path: ./reports/mocha/test-results.xml
-
-    - store_artifacts:
-        path: ./reports/eslint/eslint.xml
-
-    - store_artifacts: # upload test coverage as artifact
-        path: ./coverage/lcov.info
-        prefix: tests
+        path: myartifact.tar
+        destination: artifact_name

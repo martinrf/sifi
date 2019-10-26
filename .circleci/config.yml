@@ -30,7 +30,7 @@ jobs:
         when: always
     - run:
         name: Compress Coverage Reports
-        command: tar -cvf coverage.tar /coverage/lcov-report
+        command: tar -cvf coverage.tar ~/repo/coverage/lcov-report
     - store_artifacts:
         path: myartifact.tar
         destination: artifact_name

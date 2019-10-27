@@ -1,4 +1,4 @@
-const facebookGraph = require('../src/channel/facebook-graph');
+const FacebookGraph = require('../src/channel/facebook-graph.js');
 const nock = require('nock');
 const assert = require('assert');
 
@@ -15,7 +15,7 @@ describe("Facebook Graph API Tests", function(){
       "api_url": "https://testapi.com",
       "access_token": "a32as3"
     };
-    const result = await facebookGraph(fakeConfig).send({});
+    const result = await FacebookGraph(fakeConfig).send({});
     assert(result.data, { "test": "ok" });
     assert(result.status, 200);
   });
@@ -29,7 +29,7 @@ describe("Facebook Graph API Tests", function(){
       "api_url": "https://testapi.com",
       "access_token": "a32as3"
     };
-    const result = await facebookGraph(fakeConfig).getUserProfileData(222);
+    const result = await FacebookGraph(fakeConfig).getUserProfileData(222);
     assert.ok(result.data);
   });
 });

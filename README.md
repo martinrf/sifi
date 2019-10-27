@@ -18,8 +18,8 @@ To Deploy
     
     cd zurbo
     git pull
-    sudo docker build --no-cache -tag zyphy/zurbot .
+    sudo docker build --no-cache --tag zyphy/zurbot .
     sudo docker ps 
     sudo docker stop CONTAINER_ID
     sudo docker rm CONTAINER_ID
-    sudo docker run -d -i zyphy/zurbot -p 5600:5600
+    sudo docker run -d -i -p 5600:5600 zyphy/zurbot

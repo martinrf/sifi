@@ -14,7 +14,7 @@ class FacebookAPI {
     console.log('putes', url);
 
     const config = {
-      'params': { 'access_token': 'EAATbyvBn6z4BAMSHaDc7sZBsRJkD7ZBuIbtfGTPe9TQRjieH89dZCvzaaO7PGlGOKZB83kgKjX6ZBjAXNXKP7JGREnFth3QKomoZAqOBHeMYH1X33EMn7Lz6GJNpP3JqNa2PZCJKRVvPaj1w8XLg8UJ5jvpF6H6jwYcFrNBdHexga37MfbrTALW' },
+      'params': { 'access_token': 'EAAGhNyYczWwBAOibTQCrETOeAyxEeoKsZBhywi3wZAvGaDpe5EirepTsshlhkGmi0tsONIFlXImp3pTeTxKGOvzhS8jIB3GFPsoD7LIj3nlu6ZCqXpJHZCK24e4M33K2IORORwgznFHUNjBbVZBgxL6soDNioSSm5NTEOO2ptH3i9WhOSGYmL' },
       'method': 'post'
     };
     const response = await axios.post(url, data, config);

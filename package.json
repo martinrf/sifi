@@ -1,13 +1,13 @@
 {
   "name": "zurbo",
-  "version": "1.0.0",
-  "description": "survey bot",
+  "version": "1.1.0",
+  "description": "zyphy bot",
   "main": "main.js",
   "scripts": {
     "start": "nodemon main.js",
     "server": "node index.js",
     "lint": "eslint src/**/*.js",
-    "test": "mocha",
+    "test": "mocha --recursive",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test"
   },
   "repository": {

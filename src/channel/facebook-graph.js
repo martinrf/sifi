@@ -3,22 +3,27 @@ const axios = require('axios');
 class FacebookAPI {
 
   /***
+   * Creates a new instance of FacebookAPI
+   * @param config: configuration for the api usage.
+   */
+  constructor(config) {
+    this.apiUrl = config.api_url;
+    this.access_token = config.access_token;
+  }
+
+  /***
    * Sends Data to Messenger.
    * @param data: the payload message you want to post
    * @returns {Promise<*>}
    */
   async send(data) {
-    const tuvieja = 'https://graph.facebook.com/v4.0';
-    //const url = process.env.FACEBOOK_GRAPH_API + '/me/messages';
-    const url = tuvieja + '/me/messages';// 'params': { 'access_token': process.env.MESSENGER_API_TOKEN }
-    console.log('putes', url);
-
     const config = {
-      'params': { 'access_token': 'EAAGhNyYczWwBAOibTQCrETOeAyxEeoKsZBhywi3wZAvGaDpe5EirepTsshlhkGmi0tsONIFlXImp3pTeTxKGOvzhS8jIB3GFPsoD7LIj3nlu6ZCqXpJHZCK24e4M33K2IORORwgznFHUNjBbVZBgxL6soDNioSSm5NTEOO2ptH3i9WhOSGYmL' },
+      'params': {
+        'access_token': this.access_token
+      },
       'method': 'post'
     };
-    const response = await axios.post(url, data, config);
-    return response;
+    return await axios.post(`${this.apiUrl}/me/messages`, data, config);
   }
 
   /***
@@ -27,16 +32,15 @@ class FacebookAPI {
    * @returns {Promise<*>}
    */
   async getUserProfileData (userId) {
-    const url = process.env.FACEBOOK_GRAPH_API + '/' + userId;
-    const response = await axios.get(url, {
+    const response = await axios.get(`${this.apiUrl}/${userId}`, {
       'method': 'get',
       'params': {
         'fields': 'first_name,last_name,profile_pic,locale,timezone,gender',
-        'access_token': process.env.MESSENGER_API_TOKEN
+        'access_token': this.access_token
       }
     });
     return response.data;
   }
 }
 
-module.exports = new FacebookAPI();
+module.exports = (config) => new FacebookAPI(config);

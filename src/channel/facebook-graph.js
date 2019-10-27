@@ -1,5 +1,8 @@
 const axios = require('axios');
 
+/***
+ * Facebook Graph API Communication
+ */
 class FacebookAPI {
 
   /***

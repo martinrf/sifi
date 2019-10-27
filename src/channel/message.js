@@ -1,5 +1,5 @@
+// TODO: missing documentation for methods and class
 class Message {
-
   buildTextMessage(msg) {
     return {
       recipient: { id: msg.user.facebook_id },
@@ -22,16 +22,13 @@ class Message {
 
   build(message) {
     let newMessage = null;
-
     switch (message.type) {
       case 'text':
         newMessage = this.buildTextMessage(message);
         break;
-
       case 'prompt':
         newMessage = this.buildPromptMessage(message);
         break;
-
       default:
         break;
     }

@@ -1,0 +1,36 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+    - image: circleci/node:10.16.3
+    steps:
+    - checkout
+    - run:
+        name: update-npm
+        command: 'sudo npm install -g npm@latest'
+    - restore_cache:
+        key: dependency-cache-{{ checksum "package-lock.json" }}
+    - run:
+        name: install-dependencies
+        command: npm install
+    - save_cache: # special step to save the dependency cache
+        key: dependency-cache-{{ checksum "package-lock.json" }}
+        paths:
+        - ./node_modules
+    - run:
+        name: linter
+        command: npm run lint
+    - run:
+        name: test
+        command: npm test
+    - run:
+        name: code-coverage
+        command: npm run coverage
+        when: always
+    - run:
+        name: Compress Coverage Reports
+        command: tar -cvf coverage.tar ~/repo/coverage/lcov-report
+    - store_artifacts:
+        path: coverage.tar
+        destination: coverage_report

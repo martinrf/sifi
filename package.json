@@ -7,9 +7,8 @@
     "start": "nodemon main.js",
     "server": "node index.js",
     "lint": "eslint src/**/*.js",
-    "lint-fix": "eslint --fix src/**/*.js",
     "test": "mocha",
-    "test_coverage": "nyc --reporter=html --reporter=text mocha --exit"
+    "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test"
   },
   "repository": {
     "type": "git",
@@ -39,7 +38,6 @@
     "nodemon": "^1.19.3",
     "nyc": "^14.1.1",
     "querystring": "^0.2.0",
-    "src": "^1.1.2",
     "uuid": "^3.3.3"
   },
   "devDependencies": {

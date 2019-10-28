@@ -1,8 +1,9 @@
 const zurbo = require('../bot/zurbo');
+const messenger_channel = require('../channel/messenger_channel');
 
 module.exports = (app) => {
   app.get('/messenger/webhook', async (req, res) => {
-    if (req.query['hub.verify_token'] === process.env.VERIFY_TOKEN) {
+    if (req.query['hub.verify_token'] === messenger_channel.access_token) {
       res.send(req.query['hub.challenge']);
     } else {
       res.send('Invalid verify token');

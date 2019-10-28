@@ -1,6 +1,6 @@
 const api = require('./facebook-graph');
 const message = require('./message');
-const config = require('./zurbo_configuration');
+const messenger_channel = require('./messenger_channel');
 
 /***
  * Orchestrate the Facebook API for bot Actions
@@ -13,7 +13,7 @@ class Messenger {
    * @returns {Promise<*>}
    */
   async getUserProfileData(userId) {
-    return await api(config).getUserProfileData(userId);
+    return await api(messenger_channel).getUserProfileData(userId);
   }
 
   /***
@@ -24,7 +24,7 @@ class Messenger {
   async send(msg) {
     try {
       const newMessage = await message.build(msg);
-      return await api(config).send(newMessage);
+      return await api(messenger_channel).send(newMessage);
 
     } catch (error) {
       console.error(error);

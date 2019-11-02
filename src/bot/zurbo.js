@@ -1,7 +1,7 @@
 const dialogflow = require('../nlp/dialogflow');
 // TODO: move this outside of this class
 const dialog = require('../dialogs');
-const user = require('../user');
+const user = require('../user/user');
 
 class Zurbo {
 
@@ -30,7 +30,8 @@ class Zurbo {
   }
 
   async processWidget(message) {
-    return 'echo ' + message.text;
+    const usr = await user.create({});
+    return 'echo ' + message.text + usr._id;
   }
 }
 

@@ -3,6 +3,11 @@ const userService = require('../persistence/services/user-service');
 
 class User {
 
+  async create(userProfile){
+    const user = await userService.create(userProfile);
+    return user;
+  }
+
   async save(id) {
     const profile = await messenger.getUserProfileData(id);
     return await userService.create({

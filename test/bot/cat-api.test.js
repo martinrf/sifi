@@ -19,6 +19,6 @@ describe('Cat API Operations', async () => {
 
     const response = await catApi.getAll();
     assert(response);
-    assert.deepStrictEqual(response.data, responseData);
+    assert.deepStrictEqual(response, responseData);
   });
 });

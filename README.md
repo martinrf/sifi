@@ -1,5 +1,5 @@
-# zurbo
-Survey Bot
+# Sifi
+Sifi
 
     npm install
     cp .env.example .env

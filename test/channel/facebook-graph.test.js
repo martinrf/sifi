@@ -2,7 +2,6 @@ const FacebookGraphTest = require('../../src/channel/facebook-graph');
 const nock = require('nock');
 const assert = require('assert');
 
-
 describe("Facebook Graph API Tests", function(){
   beforeEach(async () => {});
 

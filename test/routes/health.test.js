@@ -1,1 +1,1 @@
-const health = require('../../src/routes/health');
+require('../../src/routes/health');

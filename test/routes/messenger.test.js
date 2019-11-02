@@ -1,1 +1,1 @@
-const messenger = require('../../src/routes/messenger');
+require('../../src/routes/messenger');

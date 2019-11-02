@@ -34,6 +34,17 @@ class UserService {
       throw error;
     }
   }
+
+  async findById(id) {
+    try {
+      const user = await UserModel.findOne({ '_id': id });
+      return user;
+    } catch (error) {
+      // TODO: Implement logger
+      console.error(error);
+      throw error;
+    }
+  }
 }
 
 module.exports = new UserService();

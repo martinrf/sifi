@@ -28,6 +28,16 @@ class User {
     }
     return user;
   }
+
+  async findOrCreate(id) {
+    let user;
+    if (!id) {
+      user = await userService.create();
+    } else {
+      user = await userService.findById(id);
+    }
+    return user;
+  }
 }
 
 module.exports = new User();

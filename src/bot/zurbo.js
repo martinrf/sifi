@@ -30,8 +30,8 @@ class Zurbo {
   }
 
   async processWidget(message) {
-    const usr = await user.create({});
-    return 'echo ' + message.text + usr._id;
+    const usr = await user.findOrCreate(message.user_id);
+    return { text : 'echo ' + message.text, 'user_id': usr._id } ;
   }
 }
 

@@ -4,7 +4,7 @@ const { DIALOGFLOW_PROJECT_ID } = process.env;
 
 class Dialogflow {
 
-  async detectIntent({ event, user }) {
+  async detectIntent({ message, locale }) {
     const sessionId = uuid.v4();
     const filePath = `${__dirname}/service-account-key.json`;
     const sessionClient = new dialogflow.SessionsClient({ keyFilename: filePath });
@@ -14,8 +14,8 @@ class Dialogflow {
       session: sessionPath,
       queryInput: {
         text: {
-          text: event.message.text,
-          languageCode: user.locale,
+          text: message,
+          languageCode: locale,
         }
       }
     };

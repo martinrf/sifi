@@ -23,19 +23,20 @@ class Zurbo {
       }
 
       default: {
-        const intent = await dialogflow.detectIntent({ event, user: usr });
+        const intent = await dialogflow.detectIntent({ message: event.message.text, locale: usr.locale });
         await dialog.beginDialog(usr, intent);
       }
     }
   }
 
   async processWidget(message) {
-    if (!message.user_id) {
-      message.user_id = '5dbdd2a3e8f9afd38a767b15';
-      message.first_name = 'Anonymous';
+    if (!message.user_id){
+      message.user_id = '5dbdd098e8f9afc08a767b03';
     }
     const usr = await user.findOrCreate(message.user_id);
-    return { text: 'echo ' + message.text, 'user_id': usr._id };
+    const intent = await dialogflow.detectIntent({ message: message.text, locale: usr.locale});
+    const responseText = await dialog.widgetDialog(usr, intent);
+    return { text: responseText, user_id: usr._id } ;
   }
 }
 

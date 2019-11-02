@@ -28,6 +28,10 @@ class Zurbo {
       }
     }
   }
+
+  async processWidget(message) {
+    return 'echo ' + message.text;
+  }
 }
 
 module.exports = new Zurbo();

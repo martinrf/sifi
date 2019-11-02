@@ -12,6 +12,11 @@
     "validation": null,
     "choices": []
   },
+  "cat": {
+    "type": "function",
+    "class": "cat",
+    "method": "get"
+  },
   "unknown": {
     "type": "text",
     "text": "Sorry, I don't understand 😢"

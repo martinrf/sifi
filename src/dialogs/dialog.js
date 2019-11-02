@@ -30,6 +30,12 @@ class Dialog {
     await messenger.send(message);
   }
 
+  async processFunctionDialog(user, dialog) {
+    const classInstance = require(`../bot/features/${dialog.class}`);
+    const response = await classInstance[dialog.method]();
+    await messenger.send({ ...response, user });
+  }
+
   async beginDialog(user, dialogId) {
     const dialog = this.findDialog(dialogId);
     switch (dialog.type) {
@@ -39,6 +45,10 @@ class Dialog {
 
       case 'prompt':
         await this.processPromptDialog(user, dialog);
+        break;
+
+      case 'function':
+        await this.processFunctionDialog(user, dialog);
         break;
 
       default:

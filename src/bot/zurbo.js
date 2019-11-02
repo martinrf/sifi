@@ -1,6 +1,6 @@
 const dialogflow = require('../nlp/dialogflow');
 // TODO: move this outside of this class
-const dialog = require('../dialogs');
+const dialog = require('../dialogs/dialog');
 const user = require('../user/user');
 
 class Zurbo {

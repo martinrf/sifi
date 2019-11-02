@@ -1,23 +1,23 @@
 const proxyquire = require('proxyquire');
-const { stub } = require('sinon');
+const sinon = require('sinon');
 const assert = require('assert');
 
-describe('messenger tests', () => {
+describe('messenger tests', async () => {
   let messenger, apiStub, configKeys, buildStub;
 
-  beforeEach(() => {
-    apiStub = stub();
-    buildStub = stub();
+  beforeEach(async () => {
+    apiStub = sinon.stub();
+    buildStub = sinon.stub();
     configKeys = { api_url: 'dasdfasf' };
     messenger = proxyquire('../../src/channel/messenger', {
       './messenger_channel': configKeys,
-      './facebook-graph': () => ({
+      './facebook-graph': (configKeys) => ({
         getUserProfileData: apiStub,
         send: apiStub
       }),
-      './message': () => ({
+      './message': {
         build: buildStub
-      })
+      }
     });
   });
 
@@ -31,19 +31,20 @@ describe('messenger tests', () => {
     assert.deepStrictEqual(apiStub.args[0], userId);
   });
 
-  it('build a message and get the response after sent', async () => {
+  it('should sent the message built to the api', async () => {
     const responseMessage = {
       recipient: { id: 'id' },
       message: { text: 'text' },
       notification_type: 'REGULAR'
     };
-    // apiStub.resolves({ 'test_response': 'ok' });
     buildStub.resolves(responseMessage);
     const message = { recipient: 'id', message: 'text', type: 'text' };
-    const buildResponse = await messenger.build(message);
-    assert(buildResponse);
-    assert.deepStrictEqual(buildResponse, responseMessage);
-    // assert(apiStub.calledOnce);
-    // assert.deepStrictEqual(apiStub.args[0], message);
+    const apiResolves = { 'test': 'ok'};
+    apiStub.resolves(apiResolves);
+    const sendResponse = await messenger.send(message);
+    assert(sendResponse);
+    assert.deepStrictEqual(sendResponse, apiResolves);
+    assert(buildStub.calledOnce);
+    assert(apiStub.calledOnce);
   });
 });

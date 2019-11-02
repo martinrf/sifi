@@ -30,6 +30,10 @@ class Zurbo {
   }
 
   async processWidget(message) {
+    if (!message.user_id){
+      message.user_id = '5dbdd2a3e8f9afd38a767b15';
+      message.first_name = 'Anonymous'
+    }
     const usr = await user.findOrCreate(message.user_id);
     return { text : 'echo ' + message.text, 'user_id': usr._id } ;
   }

@@ -4,6 +4,27 @@
 class Message {
 
   /**
+   * Build a media message. It supports images, GIFs, and videos.
+   * @param msg 
+   */
+  buildImageMessage(msg) {
+    let message = {
+      recipient: {
+        id: msg.user.facebook_id
+      },
+      message: {
+        attachment: {
+          type: 'image',
+          payload: {
+            url: msg.url,
+            is_reusable: true
+          }
+        }
+      }
+    };
+    return message;
+  }
+  /**
    * Build a text message.
    * @param msg 
    */
@@ -43,6 +64,9 @@ class Message {
         break;
       case 'prompt':
         newMessage = this.buildPromptMessage(message);
+        break;
+      case 'image':
+        newMessage = this.buildImageMessage(message);
         break;
       default:
         break;

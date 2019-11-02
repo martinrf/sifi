@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon main.js",
     "server": "node index.js",
-    "lint": "eslint ./**/*.js",
+    "lint": "eslint src/**/*.js test/**/*.js",
     "test": "mocha --recursive",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test"
   },

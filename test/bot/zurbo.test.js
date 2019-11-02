@@ -1,1 +1,1 @@
-const Messenger = require('../../src/bot/zurbo');
+require('../../src/bot/zurbo');

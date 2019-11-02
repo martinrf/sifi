@@ -1,7 +1,7 @@
 const dialogflow = require('../nlp/dialogflow');
 // TODO: move this outside of this class
 const dialog = require('../dialogs');
-const user = require('../user');
+const user = require('../user/user');
 
 class Zurbo {
 
@@ -27,6 +27,11 @@ class Zurbo {
         await dialog.beginDialog(usr, intent);
       }
     }
+  }
+
+  async processWidget(message) {
+    const usr = await user.findOrCreate(message.user_id);
+    return { text : 'echo ' + message.text, 'user_id': usr._id } ;
   }
 }
 

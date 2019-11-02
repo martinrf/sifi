@@ -1,14 +1,22 @@
 const supertest = require('supertest');
 const express = require('express');
 const assert = require('assert');
+const sinon = require('sinon');
+const bodyParser = require('body-parser');
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('widget feature backend routes', async () => {
-  let app, request, widget;
-  beforeEach(() => {
-    widget = require('../../src/routes/widget');
+  let app, widget, zurboStub, request;
 
+  beforeEach(async () => {
+    zurboStub = sinon.stub();
     app = express();
-
+    app.use(bodyParser.json());
+    widget = proxyquire('../../src/routes/widget', {
+      '../bot/zurbo': {
+        processWidget: zurboStub
+      }
+    });
     widget(app);
     request = supertest(app);
   });
@@ -42,6 +50,20 @@ describe('widget feature backend routes', async () => {
       .expect(200)
       .end((err, res) => {
         assert.deepStrictEqual(res.text, 'Invalid verify token');
+        done();
+      });
+  });
+
+  it('should respond a 200 with a body containing a text property', (done) => {
+    zurboStub.resolves({'text': 'response text message.'});
+    request
+      .post('/widget/message')
+      .set('Accept', 'application/json')
+      .send({'test': 'ok'})
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        assert.deepStrictEqual(res.body, {'text': 'response text message.'});
         done();
       });
   });

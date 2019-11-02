@@ -13,7 +13,8 @@ describe('messenger tests', async () => {
       './messenger_channel': configKeys,
       './facebook-graph': (configKeys) => ({
         getUserProfileData: apiStub,
-        send: apiStub
+        send: apiStub,
+        configKeys: configKeys
       }),
       './message': {
         build: buildStub

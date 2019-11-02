@@ -30,16 +30,13 @@ class Zurbo {
   }
 
   async processWidget(message) {
-    let response = message;
     if (!message.user_id){
-      response.user_id = '5dbdd2a3e8f9afd38a767b15';
-      response.first_name = 'Anonymous';
-      response.locale = 'en-US';
+      message.user_id = '5dbdd098e8f9afc08a767b03';
     }
     const usr = await user.findOrCreate(message.user_id);
-    const intent = await dialogflow.detectIntent({ message: message.text, locale: message.locale});
-    response.text = await dialog.widgetDialog(usr, intent);
-    return { ...response } ;
+    const intent = await dialogflow.detectIntent({ message: message.text, locale: usr.locale});
+    const responseText = await dialog.widgetDialog(usr, intent);
+    return { text: responseText, user_id: usr._id } ;
   }
 }
 

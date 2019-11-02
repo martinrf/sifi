@@ -1,6 +1,6 @@
 const dialogflow = require('../nlp/dialogflow');
 // TODO: move this outside of this class
-const dialog = require('../dialogs');
+const dialog = require('../dialogs/dialog');
 const user = require('../user/user');
 
 class Zurbo {
@@ -30,12 +30,12 @@ class Zurbo {
   }
 
   async processWidget(message) {
-    if (!message.user_id){
+    if (!message.user_id) {
       message.user_id = '5dbdd2a3e8f9afd38a767b15';
-      message.first_name = 'Anonymous'
+      message.first_name = 'Anonymous';
     }
     const usr = await user.findOrCreate(message.user_id);
-    return { text : 'echo ' + message.text, 'user_id': usr._id } ;
+    return { text: 'echo ' + message.text, 'user_id': usr._id };
   }
 }
 

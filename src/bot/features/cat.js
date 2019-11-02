@@ -3,7 +3,7 @@ const axios = require('axios');
 /***
  * CatApi Intent
  */
-class CatApi {
+class Cat {
 
   /***
    * Creates an instances of the Cat API.
@@ -17,10 +17,10 @@ class CatApi {
    * Gets all the cats for the given search options.
    * @returns {Promise<*>}
    */
-  async getAll(){
-    return await axios.get(`${this.apiUrl}/images/search`, {
+  async getAll() {
+    const { data } = await axios.get(`${this.apiUrl}/images/search`, {
       'method': 'get',
-      'headers': { 'x-api-key': this.apiKey},
+      'headers': { 'x-api-key': this.apiKey },
       'params': {
         'size': '',
         'mime_types': '',
@@ -32,7 +32,16 @@ class CatApi {
         'breed_id': ''
       }
     });
+    return data;
+  }
+
+  /**
+   * Get a cat image.
+   */
+  async get() {
+    const cats = await this.getAll();
+    return { url: cats[0].url, type: 'image' };
   }
 }
 
-module.exports = new CatApi();
+module.exports = new Cat();

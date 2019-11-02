@@ -3,7 +3,7 @@ const messenger_channel = require('../channel/messenger_channel');
 
 module.exports = (app) => {
   app.get('/messenger/webhook', async (req, res) => {
-    if (req.query['hub.verify_token'] === messenger_channel.access_token) {
+    if (req.query['hub.verify_token'] === messenger_channel.verify_token) {
       res.send(req.query['hub.challenge']);
     } else {
       res.send('Invalid verify token');

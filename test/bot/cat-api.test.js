@@ -1,4 +1,4 @@
-const catApi = require('../../src/bot/cat-api');
+const catApi = require('../../src/bot/features/cat');
 const nock = require('nock');
 const assert = require('assert');
 

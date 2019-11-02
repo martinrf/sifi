@@ -6,11 +6,11 @@ describe('Cat API Operations', async () => {
 
   it('getAll should return a single random image if called without configuration', async () => {
     const responseData = {
-      "breeds": [],
-      "id": "3l0",
-      "url": "https://cdn2.thecatapi.com/images/3l0.jpg",
-      "width": 500,
-      "height": 333
+      'breeds': [],
+      'id': '3l0',
+      'url': 'https://cdn2.thecatapi.com/images/3l0.jpg',
+      'width': 500,
+      'height': 333
     };
 
     nock('https://api.thecatapi.com/v1')
@@ -19,6 +19,6 @@ describe('Cat API Operations', async () => {
 
     const response = await catApi.getAll();
     assert(response);
-    assert.deepStrictEqual(response.data, responseData)
+    assert.deepStrictEqual(response.data, responseData);
   });
 });

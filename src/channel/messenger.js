@@ -25,7 +25,6 @@ class Messenger {
     try {
       const newMessage = await message.build(msg);
       return await api(messenger_channel).send(newMessage);
-
     } catch (error) {
       console.error(error);
     }

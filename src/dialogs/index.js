@@ -46,6 +46,17 @@ class Dialog {
     }
   }
 
+  async widgetDialog(user, dialogId) {
+    const dialog = this.findDialog(dialogId);
+    switch (dialog.type) {
+      case 'text':
+        return 'text';
+
+      default:
+        return 'default';
+    }
+  }
+
   async saveDialogResponse(user, response) {
     const condition = { facebook_id: user.facebook_id };
     const update = { promptField: null, dialogStatus: 'finished' };

@@ -50,7 +50,7 @@ class Dialog {
     const dialog = this.findDialog(dialogId);
     switch (dialog.type) {
       case 'text':
-        return 'text';
+        return dialog.text;
 
       default:
         return 'default';

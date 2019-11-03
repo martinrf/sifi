@@ -1,12 +1,16 @@
 {
   "greet": {
     "type": "text",
-    "text": "Hello 🖖"
+    "texts": [
+      "Hello 🖖",
+      "Hi!",
+      "Hey!"
+    ]
   },
   "contact": {
     "type": "prompt",
     "field": "contact_info",
-    "promptText": "Sure! Let me take note on how to contact you and someone on our team will reach you in the next few days.",
+    "promptTexts": ["Sure! Let me take note on how to contact you and someone on our team will reach you in the next few days."],
     "closeText": "What's next?",
     "validationText": "not sure if we are going to be able to contact you there but we will try for sure!",
     "validation": null,
@@ -20,18 +24,18 @@
   },
   "unknown": {
     "type": "text",
-    "text": "what?? I'm a little confused about what you are saying."
+    "texts": ["what?? I'm a little confused about what you are saying."]
   },
   "bye": {
     "type": "text",
-    "text": "See you later then, remember if you need anything I'm always around"
+    "texts": ["See you later then, remember if you need anything I'm always around"]
   },
   "ceo": {
     "type": "text",
-    "text": "Our CEO, big Bot Creator, liberator of many chats, our light in the night, our master. Ok, He's not around... a nice guy, but not my type you know... he is soo, soo, old school."
+    "texts": ["Our CEO, big Bot Creator, liberator of many chats, our light in the night, our master. Ok, He's not around... a nice guy, but not my type you know... he is soo, soo, old school."]
   },
   "damn_bot": {
     "type": "text",
-    "text": "You are a not a Human!"
+    "texts": ["You are a not a Human!"]
   }
 }

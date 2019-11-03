@@ -20,14 +20,18 @@
   },
   "unknown": {
     "type": "text",
-    "text": "Sorry, I don't understand 😢"
+    "text": "what?? I'm a little confused about what you are saying."
   },
   "bye": {
     "type": "text",
-    "text": "See you later."
+    "text": "See you later then, remember if you need anything I'm always around"
   },
   "ceo": {
     "type": "text",
     "text": "Our CEO, big Bot Creator, liberator of many chats, our light in the night, our master. Ok, He's not around... a nice guy, but not my type you know... he is soo, soo, old school."
+  },
+  "damn_bot": {
+    "type": "text",
+    "text": "You are a not a Human!"
   }
 }

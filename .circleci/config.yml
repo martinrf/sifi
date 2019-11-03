@@ -37,8 +37,29 @@ jobs:
     - run:
         name: Add Dokku to known_hosts
         command: ssh-keyscan -H 52.90.114.53 >> ~/.ssh/known_hosts ; ssh-keyscan -H ec2-52-90-114-53.compute-1.amazonaws.com >> ~/.ssh/known_hosts
-    - run:
-        name: Deploy to Dokku
-        command: git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend master
+    - run: |
+    if [ "$CIRCLE_BRANCH" = "master" ]; then
+        git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend master
+    fi
+    - run: |
+    if [ "$CIRCLE_BRANCH" = "develop" ]; then
+        git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend-develop master
+    fi
+
+        
+
+    jobs:
+      - build
+      - terraform_plan:
+          requires:
+             - build
+      - terraform_apply:
+          requires:
+             - build
+             - terraform_plan
+          filters:
+            branches:
+              only:
+                  - master
 
         

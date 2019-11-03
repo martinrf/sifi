@@ -17,7 +17,7 @@
   },
   "reach_you": {
     "type": "text",
-    "texts": ["Someone on our team is going to get in contact with you in the next days."]
+    "texts": ["Someone on our team is going to get in contact with you in the next days.", "We will be back to you in a couple of days."]
   },
   "cat": {
     "type": "function",

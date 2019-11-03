@@ -3,7 +3,7 @@ const dialogflow = require('../nlp/dialogflow');
 const dialog = require('../dialogs/dialog');
 const user = require('../user/user');
 
-class ChannelHandlder {
+class ChannelHandler {
 
   async processReponse(usr, response) {
     await dialog.saveDialogResponse(usr, response);
@@ -40,4 +40,4 @@ class ChannelHandlder {
   }
 }
 
-module.exports = new ChannelHandlder();
+module.exports = new ChannelHandler();

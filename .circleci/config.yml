@@ -45,19 +45,3 @@ jobs:
         command: if [ "$CIRCLE_BRANCH" = "develop" ]; then git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend-develop master fi
 
         
-
-    jobs:
-      - build
-      - terraform_plan:
-          requires:
-             - build
-      - terraform_apply:
-          requires:
-             - build
-             - terraform_plan
-          filters:
-            branches:
-              only:
-                  - master
-
-        

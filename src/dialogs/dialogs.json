@@ -8,11 +8,16 @@
   "contact": {
     "type": "prompt",
     "field": "contact_info",
-    "promptTexts": ["Sure! Let me take note on how to contact you and someone on our team will reach you in the next few days."],
-    "closeText": "What's next?",
-    "validationText": "not sure if we are going to be able to contact you there but we will try for sure!",
-    "validation": null,
-    "choices": []
+    "promptTexts": ["Sure! Let me take note on how to contact you and someone on our team will reach you in the next few days."]
+  },
+  "any_word_valid": {
+    "type": "validation",
+    "text": "not sure if we are going to be able to contact you there but we will try for sure!",
+    "regex": "\\w*"
+  },
+  "reach_you": {
+    "type": "text",
+    "texts": ["Someone on our team is going to get in contact with you in the next days."]
   },
   "cat": {
     "type": "function",

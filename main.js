@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 require('./src/routes/index')(app);
 
 app.listen(port, () => {
-  console.log('Zurbo is running on port ' + port);
+  console.log('Sifi is running on port ' + port);
 });
 
 module.exports = app;

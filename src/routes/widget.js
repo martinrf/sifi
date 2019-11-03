@@ -1,4 +1,4 @@
-const zurbo = require('../bot/zurbo');
+const zurbo = require('../bot/channel-handler');
 
 module.exports = (app) => {
 

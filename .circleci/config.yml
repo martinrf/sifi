@@ -40,12 +40,12 @@ jobs:
     - run:
         name: Add Dokku to master
         command: if [ "$CIRCLE_BRANCH" = "master" ]; then 
-        git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend master 
-        fi
+                 git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend master 
+                 fi
     - run:
         name: Add Dokku to master 
         command: if [ "$CIRCLE_BRANCH" = "develop" ]; then 
-        git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend-develop master 
-        fi
+                 git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend-develop master 
+                 fi
 
         

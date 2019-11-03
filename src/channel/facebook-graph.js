@@ -9,9 +9,9 @@ class FacebookAPI {
    * Creates a new instance of FacebookAPI
    * @param config: configuration for the api usage.
    */
-  constructor(config) {
-    this.apiUrl = config.api_url;
-    this.access_token = config.access_token;
+  constructor() {
+    this.apiUrl = 'https://graph.facebook.com/v4.0';
+    this.access_token = process.env.ACCESS_TOKEN;
   }
 
   /***
@@ -46,4 +46,4 @@ class FacebookAPI {
   }
 }
 
-module.exports = (config) => new FacebookAPI(config);
+module.exports = () => new FacebookAPI();

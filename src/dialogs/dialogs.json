@@ -5,12 +5,17 @@
   },
   "contact": {
     "type": "prompt",
-    "field": "email",
-    "promptText": "Sure! A seller will contact you to provide you with all the information. Please tell me what is your email?",
-    "closeText": "Thank you! We'll contect you asap 👋",
-    "validationText": "Sorry, you must send a valid email address 😉",
-    "validation": null,
-    "choices": []
+    "field": "contact_info",
+    "text": "Sure! What's your contact information?"
+  },
+  "any_word_valid": {
+    "type": "validation",
+    "text": "please input something",
+    "regex": "\\w*"
+  },
+  "reach_you": {
+    "type": "text",
+    "text": "Someone on our team is going to get in contact with you in the next days."
   },
   "cat": {
     "type": "function",
@@ -21,5 +26,9 @@
   "unknown": {
     "type": "text",
     "text": "Sorry, I don't understand 😢"
+  },
+  "bye": {
+    "type": "text",
+    "text": "See you later."
   }
 }

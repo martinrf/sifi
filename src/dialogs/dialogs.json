@@ -14,8 +14,9 @@
   },
   "cat": {
     "type": "function",
-    "class": "cat",
-    "method": "get"
+    "class": "CatApi",
+    "method": "getAll",
+    "path": "cat-api"
   },
   "unknown": {
     "type": "text",

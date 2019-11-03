@@ -1,5 +1,4 @@
 const Message = require('../../src/channel/message');
-// const nock = require('nock');
 const assert = require('assert');
 
 describe('Message Tests', function () {

@@ -5,6 +5,10 @@ const user = require('../user/user');
 
 class ChannelHandler {
 
+  async handleMessengerMessage() {
+
+  }
+
   async processReponse(usr, response) {
     await dialog.saveDialogResponse(usr, response);
     if (usr.closeText) {

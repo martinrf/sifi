@@ -1,4 +1,4 @@
-const zurbo = require('../bot/channel-handler');
+const channelHandler = require('../bot/channel-handler');
 
 module.exports = (app) => {
 
@@ -13,7 +13,7 @@ module.exports = (app) => {
 
   app.post('/widget/message', async (req, res) => {
     if (req.body){
-      const responseText = await zurbo.processWidget(req.body);
+      const responseText = await channelHandler.processWidget(req.body);
       res.status(200).send(responseText);
     }
   });

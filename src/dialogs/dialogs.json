@@ -1,12 +1,18 @@
 {
   "greet": {
     "type": "text",
-    "text": "Hello 🖖"
+    "texts": [
+      "Hello 🖖",
+      "Hi!",
+      "Hey!"
+    ]
   },
   "contact": {
     "type": "prompt",
     "field": "email",
-    "promptText": "Sure! A seller will contact you to provide you with all the information. Please tell me what is your email?",
+    "promptTexts": [
+      "Sure! A seller will contact you to provide you with all the information. Please tell me what is your email?"
+    ],
     "closeText": "Thank you! We'll contect you asap 👋",
     "validationText": "Sorry, you must send a valid email address 😉",
     "validation": null,
@@ -20,6 +26,8 @@
   },
   "unknown": {
     "type": "text",
-    "text": "Sorry, I don't understand 😢"
+    "texts": [
+      "Sorry, I don't understand 😢"
+    ]
   }
 }

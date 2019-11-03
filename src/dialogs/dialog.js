@@ -1,6 +1,7 @@
 const dialogs = require('./dialogs.json');
 const messenger = require('../channel/messenger');
 const userService = require('../persistence/services/user-service');
+const utils = require('../utils/utils');
 
 class Dialog {
 
@@ -9,17 +10,14 @@ class Dialog {
   }
 
   async processTextDialog(user, dialog) {
-    await messenger.send({ ...dialog, user });
+    const text = utils.getRandomElement(dialog.texts);
+    await messenger.send({ text, user, type: dialog.type });
   }
 
   async processPromptDialog(user, dialog) {
     const condition = { facebook_id: user.facebook_id };
-    const message = {
-      type: dialog.type,
-      text: dialog.promptText,
-      choices: dialog.choices,
-      user
-    };
+    const text = utils.getRandomElement(dialog.promptTexts);
+    const message = { type: dialog.type, choices: dialog.choices, text, user };
     const update = {
       dialogStatus: 'waitingResponse',
       promptField: dialog.field,

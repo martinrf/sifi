@@ -8,7 +8,9 @@
   "contact": {
     "type": "prompt",
     "field": "contact_info",
-    "promptTexts": ["Sure! Let me take note on how to contact you and someone on our team will reach you in the next few days."]
+    "promptTexts": [
+      "Sure! Let me take note on how to contact you and someone on our team will reach you in the next few days."
+    ]
   },
   "any_word_valid": {
     "type": "validation",
@@ -17,7 +19,10 @@
   },
   "reach_you": {
     "type": "text",
-    "texts": ["Someone on our team is going to get in contact with you in the next days.", "We will be back to you in a couple of days."]
+    "texts": [
+      "Someone on our team is going to get in contact with you in the next days.",
+      "We will be back to you in a couple of days."
+    ]
   },
   "cat": {
     "type": "function",
@@ -27,25 +32,38 @@
   },
   "unknown": {
     "type": "text",
-    "texts": ["what?? I'm a little confused about what you are saying.",
+    "texts": [
+      "what?? I'm a little confused about what you are saying.",
       "I am not following, can you be more specific?",
       "Ok, then ym6b232 you. huh!"
     ]
   },
   "bye": {
     "type": "text",
-    "texts": ["See you later then, remember if you need anything I'm always around"]
+    "texts": [
+      "See you later then, remember if you need anything I'm always around"
+    ]
   },
   "ceo": {
     "type": "text",
-    "texts": ["Our CEO, big Bot Creator, liberator of many chats, our light in the night, our master. Ok, He's not around... a nice guy, but not my type you know... he is soo, soo, old school."]
+    "texts": [
+      "Our CEO, big Bot Creator, liberator of many chats, our light in the night, our master. Ok, He's not around... a nice guy, but not my type you know... he is soo, soo, old school."
+    ]
   },
   "damn_bot": {
     "type": "text",
-    "texts": ["You are a not a Human!", "If I am not real, then what was that blue pill that I took two weeks ago?", "Neo. Is that you?"]
+    "texts": [
+      "You are a not a Human!",
+      "If I am not real, then what was that blue pill that I took two weeks ago?",
+      "Neo. Is that you?"
+    ]
   },
   "not_calc": {
-  "type": "text",
-  "texts": ["42", "I know the answer but sorry I don't get pay enough for that.", "Sure, let me do that for you..."]
+    "type": "text",
+    "texts": [
+      "42",
+      "I know the answer but sorry I don't get pay enough for that.",
+      "Sure, let me do that for you..."
+    ]
   }
 }

@@ -1,31 +1,21 @@
 const dialogflow = require('../nlp/dialogflow');
 // TODO: move this outside of this class
+const conversations = require('../dialogs/conversations');
+const conversation = require('../dialogs/conversation');
 const dialog = require('../dialogs/dialog');
 const user = require('../user/user');
 
 class Zurbo {
 
-  async processReponse(usr, response) {
-    await dialog.saveDialogResponse(usr, response);
-    if (usr.closeText) {
-      //TODO: Move to another place.
-      const newDialog = { type: 'text', texts: [usr.closeText] };
-      await dialog.processTextDialog(usr, newDialog);
-    }
-  }
-
   async processRequest(event) {
     const usr = await user.get(event.sender.id);
-    switch (usr.dialogStatus) {
-      case 'waitingResponse': {
-        await this.processReponse(usr, event.message.text);
-        break;
+    if (usr.conversation) {
+      if (conversations[usr.conversation].length - 1 < usr.step) {
+        await conversation.continueConversation(usr, event.message);
       }
-
-      default: {
-        const intent = await dialogflow.detectIntent({ message: event.message.text, locale: usr.locale });
-        await dialog.beginDialog(usr, intent);
-      }
+    } else {
+      const intent = await dialogflow.detectIntent({ message: event.message.text, locale: usr.locale });
+      await conversation.beginConversation(usr, intent);
     }
   }
 

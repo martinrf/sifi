@@ -2,9 +2,7 @@
   "greet": {
     "type": "text",
     "texts": [
-      "Hello 🖖",
-      "Hi!",
-      "Hey!"
+      "Hi! I'm Sifi am Virtual Assistant working here on Zyphy. How about you? What's your name?"
     ]
   },
   "contact": {
@@ -36,6 +34,10 @@
   },
   "damn_bot": {
     "type": "text",
-    "texts": ["You are a not a Human!"]
+    "texts": ["You are a not a Human!", "If I am not real, then what was that blue pill that I took two weeks ago?", "Neo. Is that you?"]
+  },
+  "not_calc": {
+  "type": "text",
+  "texts": ["42", "I know the answer but sorry I don't get pay enough for that.", "Sure, let me do that for you..."]
   }
 }

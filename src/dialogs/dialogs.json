@@ -5,10 +5,10 @@
   },
   "contact": {
     "type": "prompt",
-    "field": "email",
-    "promptText": "Sure! A seller will contact you to provide you with all the information. Please tell me what is your email?",
-    "closeText": "Thank you! We'll contect you asap 👋",
-    "validationText": "Sorry, you must send a valid email address 😉",
+    "field": "contact_info",
+    "promptText": "Sure! Let me take note on how to contact you and someone on our team will reach you in the next few days.",
+    "closeText": "What's next?",
+    "validationText": "not sure if we are going to be able to contact you there but we will try for sure!",
     "validation": null,
     "choices": []
   },
@@ -21,5 +21,13 @@
   "unknown": {
     "type": "text",
     "text": "Sorry, I don't understand 😢"
+  },
+  "bye": {
+    "type": "text",
+    "text": "See you later."
+  },
+  "ceo": {
+    "type": "text",
+    "text": "Our CEO, big Bot Creator, liberator of many chats, our light in the night, our master. Ok, He's not around... a nice guy, but not my type you know... he is soo, soo, old school."
   }
 }

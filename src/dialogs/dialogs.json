@@ -22,7 +22,10 @@
   },
   "unknown": {
     "type": "text",
-    "texts": ["what?? I'm a little confused about what you are saying."]
+    "texts": ["what?? I'm a little confused about what you are saying.",
+      "I am not following, can you be more specific?",
+      "Ok, then ym6b232 you. huh!"
+    ]
   },
   "bye": {
     "type": "text",

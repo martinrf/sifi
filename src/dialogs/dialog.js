@@ -31,7 +31,7 @@ class Dialog {
   }
 
   async processFunctionDialog(user, dialog) {
-    const classInstance = require(`../bot/features/${dialog.class}`);
+    const classInstance = require(`../bot/features/${dialog.path}`);
     const response = await classInstance[dialog.method]();
     await messenger.send({ ...response, user });
   }

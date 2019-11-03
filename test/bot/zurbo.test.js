@@ -1,1 +1,1 @@
-require('../../src/bot/zurbo');
+require('../../src/bot/channel-handler');

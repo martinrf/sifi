@@ -3,18 +3,15 @@ const sinon = require('sinon');
 const assert = require('assert');
 
 describe('messenger tests', async () => {
-  let messenger, apiStub, configKeys, buildStub;
+  let messenger, apiStub, buildStub;
 
   beforeEach(async () => {
     apiStub = sinon.stub();
     buildStub = sinon.stub();
-    configKeys = { api_url: 'dasdfasf' };
     messenger = proxyquire('../../src/channel/messenger', {
-      './messenger_channel': configKeys,
-      './facebook-graph': (configKeys) => ({
+      './facebook-graph': () => ({
         getUserProfileData: apiStub,
-        send: apiStub,
-        configKeys: configKeys
+        send: apiStub
       }),
       './message': {
         build: buildStub

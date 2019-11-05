@@ -1,6 +1,5 @@
 const dialogflow = require('../nlp/dialogflow');
 // TODO: move this outside of this class
-const conversations = require('../dialogs/conversations');
 const conversation = require('../dialogs/conversation');
 const dialog = require('../dialogs/dialog');
 const user = require('../user/user');
@@ -10,9 +9,7 @@ class Zurbo {
   async processRequest(event) {
     const usr = await user.get(event.sender.id);
     if (usr.conversation) {
-      if (conversations[usr.conversation].length - 1 < usr.step) {
-        await conversation.continueConversation(usr, event.message);
-      }
+      await conversation.continueConversation(usr, event.message);
     } else {
       const intent = await dialogflow.detectIntent({ message: event.message.text, locale: usr.locale });
       await conversation.beginConversation(usr, intent);

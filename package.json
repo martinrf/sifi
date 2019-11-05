@@ -1,6 +1,6 @@
 {
   "name": "sifi",
-  "version": "1.1.8",
+  "version": "1.2.2",
   "description": "Sifi our company assistant.",
   "main": "main.js",
   "scripts": {

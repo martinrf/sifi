@@ -34,6 +34,13 @@ class Dialog {
     await messenger.send({ ...response, user });
   }
 
+  async processPromptResponse(user, message) {
+    const condition = { facebook_id: user.facebook_id };
+    const update = { stepStatus: 'finished' };
+    update[user.promptField] = message.text;
+    await userService.updateOne(condition, update);
+  }
+
   async beginDialog(user, dialogId) {
     const dialog = this.findDialog(dialogId);
     switch (dialog.type) {
@@ -47,6 +54,18 @@ class Dialog {
 
       case 'function':
         await this.processFunctionDialog(user, dialog);
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  async continueDialog(user, dialogId, message) {
+    const dialog = this.findDialog(dialogId);
+    switch (dialog.type) {
+      case 'prompt':
+        await this.processPromptResponse(user, message);
         break;
 
       default:

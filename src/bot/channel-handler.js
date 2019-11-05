@@ -4,7 +4,7 @@ const conversation = require('../dialogs/conversation');
 const dialog = require('../dialogs/dialog');
 const user = require('../user/user');
 
-class Zurbo {
+class ChannelHandler {
 
   async processRequest(event) {
     const usr = await user.get(event.sender.id);
@@ -27,4 +27,4 @@ class Zurbo {
   }
 }
 
-module.exports = new Zurbo();
+module.exports = new ChannelHandler();

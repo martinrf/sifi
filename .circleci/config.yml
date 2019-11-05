@@ -10,12 +10,12 @@ jobs:
         name: update-npm
         command: 'sudo npm install -g npm@latest'
     - restore_cache:
-        key: dependency-cache-{{ checksum "package-lock.json" }}
+        key: dependency-cache-{{ checksum "package.json" }}
     - run:
         name: install-dependencies
         command: npm install
     - save_cache: # special step to save the dependency cache
-        key: dependency-cache-{{ checksum "package-lock.json" }}
+        key: dependency-cache-{{ checksum "package.json" }}
         paths:
         - ./node_modules
     - run:
@@ -34,3 +34,14 @@ jobs:
     - store_artifacts:
         path: coverage.tar
         destination: coverage_report
+    - run:
+        name: Add Dokku to known_hosts
+        command: ssh-keyscan -H 52.90.114.53 >> ~/.ssh/known_hosts ; ssh-keyscan -H ec2-52-90-114-53.compute-1.amazonaws.com >> ~/.ssh/known_hosts
+    - run:
+        name: Add Dokku to master
+        command: if [ "$CIRCLE_BRANCH" = "master" ]; then git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend master; fi;
+    - run:
+        name: Add Dokku to master 
+        command: if [ "$CIRCLE_BRANCH" = "develop" ]; then  git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend-develop develop ; fi;
+
+        

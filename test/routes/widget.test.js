@@ -6,15 +6,15 @@ const bodyParser = require('body-parser');
 const proxyquire = require('proxyquire').noCallThru();
 
 describe('widget feature backend routes', async () => {
-  let app, widget, zurboStub, request;
+  let app, widget, channelHandlerStub, request;
 
   beforeEach(async () => {
-    zurboStub = sinon.stub();
+    channelHandlerStub = sinon.stub();
     app = express();
     app.use(bodyParser.json());
     widget = proxyquire('../../src/routes/widget', {
-      '../bot/zurbo': {
-        processWidget: zurboStub
+      '../bot/channel-handler': {
+        processWidget: channelHandlerStub
       }
     });
     widget(app);
@@ -55,7 +55,7 @@ describe('widget feature backend routes', async () => {
   });
 
   it('should respond a 200 with a body containing a text property', (done) => {
-    zurboStub.resolves({'text': 'response text message.'});
+    channelHandlerStub.resolves({'text': 'response text message.'});
     request
       .post('/widget/message')
       .set('Accept', 'application/json')

@@ -66,3 +66,6 @@ typings/
 #nyc
 .nyc
 coverage/
+
+yarn.lock
+package-lock.json

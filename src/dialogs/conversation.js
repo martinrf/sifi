@@ -24,7 +24,7 @@ class Conversation {
   }
 
   /**
-   * Continue the conversation based on the last stepStatus.
+   * Continue the conversation based on the last conversationStatus.
    * @param usr 
    * @param message 
    */
@@ -65,7 +65,7 @@ class Conversation {
     const update = {
       conversation: null,
       step: null,
-      stepStatus: null,
+      conversationStatus: null,
       promptField: null
     };
     await this.updateConversation(usr, update);

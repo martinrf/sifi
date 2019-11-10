@@ -8,7 +8,7 @@ class ChannelHandler {
 
   async processRequest(event) {
     const usr = await user.get(event.sender.id);
-    if (usr.conversation) {
+    if (usr.conversationStatus === 'waiting') {
       await conversation.continueConversation(usr, event.message);
     } else {
       const intent = await dialogflow.detectIntent({ message: event.message.text, locale: usr.locale });

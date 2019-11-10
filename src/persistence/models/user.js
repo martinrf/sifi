@@ -11,9 +11,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String },
   conversation: { type: String },
   step: { type: Number },
-  stepStatus: { type: String },
+  conversationStatus: { type: String },
   promptField: { type: String },
-  validationText: { type: String },
 }, { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } });
 
 const userModel = mongoose.model('user', userSchema);

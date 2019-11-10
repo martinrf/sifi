@@ -14,7 +14,7 @@ const processTextDialog = async (user, dialog) => {
 
 const processPromptDialog = async (user, dialog) => {
   const condition = { facebook_id: user.facebook_id };
-  const text = utils.getRandomElement(dialog.promptTexts);
+  const text = getRandomElement(dialog.promptTexts);
   const message = { type: dialog.type, choices: dialog.choices, text, user };
   const update = { conversationStatus: 'waiting', promptField: dialog.field };
   await userService.updateOne(condition, update);

@@ -1,5 +1,5 @@
 const assert = require('assert');
-const proxyquire = require('proxyquire').noCallThru();;
+const proxyquire = require('proxyquire').noCallThru();
 
 describe('Dialog manager class Tests Suite', () => {
   let dialog, dialogsMock;

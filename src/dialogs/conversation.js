@@ -65,7 +65,7 @@ class Conversation {
     const update = {
       conversation: null,
       step: null,
-      stepStatus: null,
+      conversationStatus: null,
       promptField: null
     };
     await this.updateConversation(usr, update);
@@ -83,10 +83,7 @@ class Conversation {
     const dialogs = conversations[conversation];
     do {
       const dialogId = dialogs[step];
-      usrDialog = dialog.findDialogById(dialogId);
-      if (!usrDialog) {
-        dialog.findDialogById('unknown'); // TODO: the fallback node should be configurable
-      }
+      usrDialog = dialog.findDialog(dialogId);
       this.updateConversation(usr, { conversation, step });
       await dialog.beginDialog(usr, dialogId);
       step++;

@@ -14,14 +14,9 @@ const processTextDialog = async (user, dialog) => {
 
 const processPromptDialog = async (user, dialog) => {
   const condition = { facebook_id: user.facebook_id };
-  const text = getRandomElement(dialog.promptTexts);
+  const text = utils.getRandomElement(dialog.promptTexts);
   const message = { type: dialog.type, choices: dialog.choices, text, user };
-  const update = {
-    dialogStatus: 'waitingResponse',
-    promptField: dialog.field,
-    validationText: dialog.validationText,
-    closeText: dialog.closeText
-  };
+  const update = { conversationStatus: 'waiting', promptField: dialog.field };
   await userService.updateOne(condition, update);
   await messenger.send(message);
 };
@@ -34,7 +29,7 @@ const processFunctionDialog = async (user, dialog) => {
 
 const processPromptResponse = async (user, message) => {
   const condition = { facebook_id: user.facebook_id };
-  const update = { stepStatus: 'finished' };
+  const update = { conversationStatus: 'finished', message: message.text };
   update[user.promptField] = message.text;
   await userService.updateOne(condition, update);
 };

@@ -1,43 +1,79 @@
 {
   "greet": {
     "type": "text",
+    "interaction": false,
     "texts": [
       "Hi! I'm Sifi am Virtual Assistant working here on Zyphy. How about you? What's your name?"
     ]
   },
   "contact": {
     "type": "prompt",
+    "interaction": true,
     "field": "contact_info",
-    "promptTexts": ["Sure! Let me take note on how to contact you and someone on our team will reach you in the next few days."],
-    "closeText": "What's next?",
-    "validationText": "not sure if we are going to be able to contact you there but we will try for sure!",
-    "validation": null,
-    "choices": []
+    "promptTexts": [
+      "Sure! Let me take note on how to contact you and someone on our team will reach you in the next few days."
+    ]
+  },
+  "any_word_valid": {
+    "type": "validation",
+    "interaction": false,
+    "text": "not sure if we are going to be able to contact you there but we will try for sure!",
+    "regex": "\\w*"
+  },
+  "reach_you": {
+    "type": "text",
+    "interaction": false,
+    "texts": [
+      "Someone on our team is going to get in contact with you in the next days.",
+      "We will be back to you in a couple of days."
+    ]
   },
   "cat": {
     "type": "function",
+    "interaction": false,
     "class": "CatApi",
     "method": "getAll",
     "path": "cat-api"
   },
   "unknown": {
     "type": "text",
-    "texts": ["what?? I'm a little confused about what you are saying."]
+    "interaction": false,
+    "texts": [
+      "what?? I'm a little confused about what you are saying.",
+      "I am not following, can you be more specific?",
+      "Ok, then ym6b232 you. huh!"
+    ]
   },
   "bye": {
     "type": "text",
-    "texts": ["See you later then, remember if you need anything I'm always around"]
+    "interaction": false,
+    "texts": [
+      "See you later then, remember if you need anything I'm always around"
+    ]
   },
   "ceo": {
     "type": "text",
-    "texts": ["Our CEO, big Bot Creator, liberator of many chats, our light in the night, our master. Ok, He's not around... a nice guy, but not my type you know... he is soo, soo, old school."]
+    "interaction": false,
+    "texts": [
+      "Our CEO, big Bot Creator, liberator of many chats, our light in the night, our master. Ok, He's not around... a nice guy, but not my type you know... he is soo, soo, old school."
+    ]
   },
   "damn_bot": {
     "type": "text",
-    "texts": ["You are a not a Human!", "If I am not real, then what was that blue pill that I took two weeks ago?", "Neo. Is that you?"]
+    "interaction": false,
+    "texts": [
+      "You are a not a Human!",
+      "If I am not real, then what was that blue pill that I took two weeks ago?",
+      "Neo. Is that you?"
+    ]
   },
   "not_calc": {
-  "type": "text",
-  "texts": ["42", "I know the answer but sorry I don't get pay enough for that.", "Sure, let me do that for you..."]
+    "type": "text",
+    "interaction": false,
+    "texts": [
+      "42",
+      "I know the answer but sorry I don't get pay enough for that.",
+      "Sure, let me do that for you..."
+    ]
   }
 }

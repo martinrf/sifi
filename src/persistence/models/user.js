@@ -9,10 +9,10 @@ const userSchema = new mongoose.Schema({
   facebook_id: { type: String },
   gender: { type: String },
   email: { type: String },
-  dialogStatus: { type: String },
+  conversation: { type: String },
+  step: { type: Number },
+  conversationStatus: { type: String },
   promptField: { type: String },
-  validationText: { type: String },
-  closeText: { type: String },
 }, { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } });
 
 const userModel = mongoose.model('user', userSchema);

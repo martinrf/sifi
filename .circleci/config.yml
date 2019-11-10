@@ -23,7 +23,7 @@ jobs:
         command: npm run lint
     - run:
         name: test
-        command: npm test
+        command: cp .env.example .env; npm test
     - run:
         name: code-coverage
         command: npm run coverage
@@ -38,7 +38,10 @@ jobs:
         name: Add Dokku to known_hosts
         command: ssh-keyscan -H 52.90.114.53 >> ~/.ssh/known_hosts ; ssh-keyscan -H ec2-52-90-114-53.compute-1.amazonaws.com >> ~/.ssh/known_hosts
     - run:
-        name: Deploy to Dokku
-        command: git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend master
+        name: Add Dokku to master
+        command: if [ "$CIRCLE_BRANCH" = "master" ]; then git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend master; fi;
+    - run:
+        name: Add Dokku to master 
+        command: if [ "$CIRCLE_BRANCH" = "develop" ]; then  git push -f dokku@ec2-52-90-114-53.compute-1.amazonaws.com:sifi-backend-develop develop:master ; fi;
 
         

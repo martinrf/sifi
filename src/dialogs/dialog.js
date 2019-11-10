@@ -1,54 +1,63 @@
 const dialogs = require('./dialogs.json');
 const messenger = require('../channel/messenger');
 const userService = require('../persistence/services/user-service');
-const utils = require('../utils/utils');
+
+const getRandomElement = (elements) => {
+  return elements[Math.floor(Math.random() * elements.length)];
+};
+
+const processTextDialog = async (user, dialog) => {
+  const text = getRandomElement(dialog.texts);
+  // TODO: do a dispatch of the message to be sent to the channel of the user
+  await messenger.send({ text, user, type: dialog.type });
+};
+
+const processPromptDialog = async (user, dialog) => {
+  const condition = { facebook_id: user.facebook_id };
+  const text = getRandomElement(dialog.promptTexts);
+  const message = { type: dialog.type, choices: dialog.choices, text, user };
+  const update = { conversationStatus: 'waiting', promptField: dialog.field };
+  await userService.updateOne(condition, update);
+  await messenger.send(message);
+};
+
+const processFunctionDialog = async (user, dialog) => {
+  const classInstance = require(`../bot/features/${dialog.path}`);
+  const response = await classInstance[dialog.method]();
+  await messenger.send({ ...response, user });
+};
+
+const processPromptResponse = async (user, message) => {
+  const condition = { facebook_id: user.facebook_id };
+  const update = { conversationStatus: 'finished', message: message.text };
+  update[user.promptField] = message.text;
+  await userService.updateOne(condition, update);
+};
 
 class Dialog {
 
-  findDialog(dialogId) {
-    return dialogs[dialogId] || dialogs['unknown'];
-  }
-
-  async processTextDialog(user, dialog) {
-    const text = utils.getRandomElement(dialog.texts);
-    await messenger.send({ text, user, type: dialog.type });
-  }
-
-  async processPromptDialog(user, dialog) {
-    const condition = { facebook_id: user.facebook_id };
-    const text = utils.getRandomElement(dialog.promptTexts);
-    const message = { type: dialog.type, choices: dialog.choices, text, user };
-    const update = { conversationStatus: 'waiting', promptField: dialog.field };
-    await userService.updateOne(condition, update);
-    await messenger.send(message);
-  }
-
-  async processFunctionDialog(user, dialog) {
-    const classInstance = require(`../bot/features/${dialog.path}`);
-    const response = await classInstance[dialog.method]();
-    await messenger.send({ ...response, user });
-  }
-
-  async processPromptResponse(user, message) {
-    const condition = { facebook_id: user.facebook_id };
-    const update = { conversationStatus: 'finished', message: message.text };
-    update[user.promptField] = message.text;
-    await userService.updateOne(condition, update);
+  /***
+   * Finds a dialog by its id.
+   * @param dialogId
+   * @returns {*}
+   */
+  findDialogById(dialogId) {
+    return dialogs[dialogId];
   }
 
   async beginDialog(user, dialogId) {
-    const dialog = this.findDialog(dialogId);
+    const dialog = this.findDialogById(dialogId);
     switch (dialog.type) {
       case 'text':
-        await this.processTextDialog(user, dialog);
+        await processTextDialog(user, dialog);
         break;
 
       case 'prompt':
-        await this.processPromptDialog(user, dialog);
+        await processPromptDialog(user, dialog);
         break;
 
       case 'function':
-        await this.processFunctionDialog(user, dialog);
+        await processFunctionDialog(user, dialog);
         break;
 
       default:
@@ -57,25 +66,24 @@ class Dialog {
   }
 
   async continueDialog(user, dialogId, message) {
-    const dialog = this.findDialog(dialogId);
-    switch (dialog.type) {
-      case 'prompt':
-        await this.processPromptResponse(user, message);
-        break;
-
-      default:
-        break;
+    const dialog = this.findDialogById(dialogId);
+    if (dialog.type === 'prompt') {
+      await processPromptResponse(user, message);
     }
   }
 
+  /***
+   * Process the dialog id node for a widget channel.
+   * @param user
+   * @param dialogId
+   * @returns {Promise<string|*>}
+   */
   async widgetDialog(user, dialogId) {
-    const dialog = this.findDialog(dialogId);
-    switch (dialog.type) {
-      case 'text':
-        return dialog.text;
-
-      default:
-        return 'default';
+    const dialog = this.findDialogById(dialogId);
+    if (dialog.type === 'text') {
+      return dialog.text;
+    } else {
+      return 'default';
     }
   }
 

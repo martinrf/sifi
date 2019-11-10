@@ -2,7 +2,7 @@ const FacebookGraphTest = require('../../src/channel/facebook-graph');
 const nock = require('nock');
 const assert = require('assert');
 
-describe('Facebook Graph API v4.0 Tests', function(){
+describe('Facebook Graph API v4.0 Tests Suite', () => {
   let envVars;
 
   beforeEach(async () => {

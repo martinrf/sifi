@@ -6,8 +6,8 @@ class Conversation {
 
   /**
    * Return the dialog id based on the converstion and the step.
-   * @param conversation 
-   * @param step 
+   * @param conversation
+   * @param step
    */
   findDialog(conversation, step) {
     return conversations[conversation][step];
@@ -15,8 +15,8 @@ class Conversation {
 
   /**
    * Update the user conversation data.
-   * @param usr 
-   * @param update 
+   * @param usr
+   * @param update
    */
   async updateConversation(usr, update) {
     const condition = { facebook_id: usr.facebook_id };
@@ -24,9 +24,9 @@ class Conversation {
   }
 
   /**
-   * Continue the conversation based on the last conversationStatus.
-   * @param usr 
-   * @param message 
+   * Continue the conversation based on the last stepStatus.
+   * @param usr
+   * @param message
    */
   async continueConversation(usr, message) {
     const usrDialog = this.findDialog(usr.conversation, usr.step);
@@ -36,7 +36,7 @@ class Conversation {
 
   /**
    * Resume the conversation from the last status.
-   * @param usr 
+   * @param usr
    */
   async resumeConversation(usr) {
     const { step, conversation } = usr;
@@ -50,8 +50,8 @@ class Conversation {
 
   /**
    * Begin a conversation.
-   * @param usr 
-   * @param conversation 
+   * @param usr
+   * @param conversation
    */
   async beginConversation(usr, conversation) {
     await this.runConversation(usr, conversation, 0);
@@ -73,9 +73,9 @@ class Conversation {
 
   /**
    * Run a conversation from a specific step.
-   * @param usr 
-   * @param conversation 
-   * @param stepIndex 
+   * @param usr
+   * @param conversation
+   * @param stepIndex
    */
   async runConversation(usr, conversation, stepIndex) {
     let step = stepIndex;

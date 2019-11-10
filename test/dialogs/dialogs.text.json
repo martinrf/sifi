@@ -1,0 +1,9 @@
+{
+  "testId": {
+    "type": "text",
+    "interaction": false,
+    "texts": [
+      "Hi text form test dialog."
+    ]
+  }
+}

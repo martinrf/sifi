@@ -6,27 +6,6 @@
       "Hi! I'm Sifi am Virtual Assistant working here on Zyphy. You can ask me anything about our company, I am here to help you."
     ]
   },
-  "contact": {
-    "type": "prompt",
-    "interaction": true,
-    "field": "contact_info",
-    "promptTexts": [
-      "Sure! Let me take note on how to contact you and someone on our team will reach in a couple of days."
-    ]
-  },
-  "any_word_valid": {
-    "type": "validation",
-    "interaction": false,
-    "text": "not sure if we are going to be able to contact you there but we will try for sure!",
-    "regex": "\\w*"
-  },
-  "reach_you": {
-    "type": "text",
-    "interaction": false,
-    "texts": [
-      "Thank you. We are getting in touch with you as soon as possible. Is there anything else I can help you with?"
-    ]
-  },
   "cat": {
     "type": "function",
     "interaction": false,

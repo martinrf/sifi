@@ -83,7 +83,7 @@ class Conversation {
     const dialogs = conversations[conversation];
     do {
       const dialogId = dialogs[step];
-      usrDialog = dialog.findDialog(dialogId);
+      usrDialog = dialog.findDialogById(dialogId);
       this.updateConversation(usr, { conversation, step });
       await dialog.beginDialog(usr, dialogId);
       step++;
